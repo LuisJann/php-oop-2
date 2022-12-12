@@ -2,14 +2,20 @@
 require_once __DIR__ . "/Models/Product.php";
 require_once __DIR__ . "/Models/Categories.php";
 
-$croquettes = new Food("crocchette", 10.99, new Categories("gatto"), "carne", 200);
-var_dump($croquettes);
+$croquettes = new Food("crocchette", 10.99, "https://ss-pics.s3.eu-west-1.amazonaws.com/files/1613286/page-98306_pla_naturaltrainer_kitten_chicken_1_5kg_9.jpg?1599816393", new Categories("gatto"), "carne", 200);
 
-$boneToys = new Toy("osso di gomma", 8.99, new Categories("cane"), "gomma", "rosso", 25);
-var_dump($boneToys);
 
-$dogBed = new DogBed("cuccia", 50, new Categories("cane"), "stoffa", "marrone", 500);
-var_dump($dogBed);
+$boneToys = new Toy("osso di gomma", 8.99, "https://www.farmacosmo.it/166170-large_default/goodie-bone-large-osso-gomma-cani-112686.jpg", new Categories("cane"), "gomma", "rosso", 25);
+
+
+$dogBed = new DogBed("cuccia", 50, "https://m.media-amazon.com/images/I/71-tsDiw8iL._AC_SY355_.jpg", new Categories("cane"), "stoffa", "marrone", 500);
+
+
+$products = [
+    $croquettes,
+    $boneToys,
+    $dogBed
+];
 
 ?>
 
@@ -25,23 +31,23 @@ var_dump($dogBed);
 </head>
 
 <body>
-    <div class="container">
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="container d-flex my-5">
+        <?php foreach ($products as $product) { ?>
+            <div class="card" style="width: 18rem;">
+                <img src="<?php echo $product->image ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $product->name ?></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><?php echo $product->price ?> €</li>
+                    <li class="list-group-item"><?php echo $product->color ?></li>
+                    <li class="list-group-item"><?php echo $product?->material ?></li>
+                    <li class="list-group-item"><?php echo $product?->ingridients ?></li>
+                    <li class="list-group-item">Dimensioni: <?php echo $product->dimension_cm ?> cm</li>
+                    <li class="list-group-item">Peso: <?php echo $product?->weight_grams ?></li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </body>
 
