@@ -33,18 +33,32 @@ $products = [
 <body>
     <div class="container d-flex my-5">
         <?php foreach ($products as $product) { ?>
-            <div class="card" style="width: 18rem;">
+            <div class="card mx-3" style="width: 18rem;">
                 <img src="<?php echo $product->image ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><?php echo $product->price ?> €</li>
-                    <li class="list-group-item"><?php echo $product->color ?></li>
-                    <li class="list-group-item"><?php echo $product?->material ?></li>
-                    <li class="list-group-item"><?php echo $product?->ingridients ?></li>
-                    <li class="list-group-item">Dimensioni: <?php echo $product->dimension_cm ?> cm</li>
-                    <li class="list-group-item">Peso: <?php echo $product?->weight_grams ?></li>
+                    <li class="list-group-item">Colore: <?php echo $product->color ?></li>
+                    <li class="list-group-item">Materiale: <?php if (isset($product->material)) {
+                                                                echo $product->material;
+                                                            } else {
+                                                                echo "Non disponibile";
+                                                            }  ?></li>
+                    <li class="list-group-item">Ingredienti: <?php if (isset($product->ingridients)) {
+                                                                    echo $product->ingridients;
+                                                                } else {
+                                                                    echo "Non disponibile";
+                                                                }  ?></li>
+                    <li class="list-group-item">Dimensioni: <?php if (isset($product->dimension_cm)) {
+                                                                echo $product->dimension_cm;
+                                                            } ?> cm</li>
+                    <li class="list-group-item">Peso: <?php if (isset($product->weight_grams)) {
+                                                            echo $product->weight_grams;
+                                                        } else {
+                                                            echo "Non disponibile";
+                                                        } ?></li>
                 </ul>
             </div>
         <?php } ?>

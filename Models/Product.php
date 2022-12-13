@@ -39,7 +39,7 @@ class Toy extends Product
     }
 }
 
-class DogBed extends Product
+class DogBed extends Toy
 {
     function __construct($name, $price, $image, Categories $categories, $material, $color, $dimension_cm)
     {
